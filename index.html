@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="follower">
+
+    </div>
+    <div class="parent">
+      <h1>To Do List</h1>
+      <input id="iteminput" type="text" placeholder="Enter your task"  />
+      <div class="button">
+        <button onclick="insert()">insert</button>
+        <button onclick="location.reload()">reset</button>
+        <button onclick="edit()">edit me</button>
+      </div>
+
+      <div class="item-container"></div>
+    </div>
+
+    <script>
+      let input = document.querySelector("#iteminput");
+      function insert() {
+        if (input.value == "") {
+          alert("enter your task");
+        } else {
+          let item = document.createElement("li");
+          item.innerHTML = `${input.value} <button> delete </button>`;
+          let container = document.querySelector(".item-container");
+          container.append(item);
+          input.value = "";
+          item.querySelector("button").addEventListener("click", del);
+          function del() {
+            item.remove();
+          }
+        }
+      }
+      function edit(){
+        if(document.designMode=="off"){
+          document.designMode = "on";
+        }
+        else{document.designMode="off";
+
+        }
+      }
+      let follower = document.querySelector(".follower")
+        document.addEventListener("mousemove",(e)=>{
+            console.log(e)
+            let {clientX, clientY}=e; 
+            follower.style.transform=`translate(${clientX}px, ${clientY}px)`;
+        });
+    </script>
+  </body>
+</html>
